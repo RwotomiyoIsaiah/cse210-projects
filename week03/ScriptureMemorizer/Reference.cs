@@ -20,14 +20,12 @@ public class Reference
         _startVerse=startVerse;
         _endVerse=endVerse;
     }
-
     public string GetDisplayText()
     {
         if (_startVerse==_endVerse)
         {
             return ($"{_book} {_chapter}:{_startVerse}");
         }
-
         else
         {
             return($"{_book} {_chapter}:{_startVerse}-{_endVerse}");
