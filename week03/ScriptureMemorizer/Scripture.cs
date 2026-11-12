@@ -36,7 +36,6 @@ public class Scripture
         int hiddenCount = 0;
         while (hiddenCount < numberToHide && !IsCompletelyHidden())
         {
-            int counts = 0;
             int index = _random.Next(_words.Count);
 //prevents the same word from being hidden multiple times by checking if the word is already hidden before hiding it
             if (!_words[index]._IsHidden())
