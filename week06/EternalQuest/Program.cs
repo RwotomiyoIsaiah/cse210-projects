@@ -1,9 +1,12 @@
-using System;
+// Added a Player Leveling System based on total accumulated score (calculated dynamically as: Level = (_score / 1000) + 1)
+// this is calculated alongside their total score at the top of the main menu.
 
+using System;
 class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello World! This is the EternalQuest Project.");
+        GoalManager manager = new GoalManager();
+        manager.Start();
     }
 }
