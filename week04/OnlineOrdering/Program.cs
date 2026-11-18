@@ -48,7 +48,7 @@ class Program
         Console.WriteLine();
         Console.WriteLine($"Total Price: ${order2.GetTotalPrice():F2}");
         Console.WriteLine();
-        double OTotal= order2.GetTotalPrice() + order1.GetTotalPrice();
-        Console.WriteLine($"OVERALL TOTAL: ${OTotal:F2}");
+        double _OTotal= order2.GetTotalPrice() + order1.GetTotalPrice();
+        Console.WriteLine($"OVERALL TOTAL: ${_OTotal:F2}");
     }
 }
