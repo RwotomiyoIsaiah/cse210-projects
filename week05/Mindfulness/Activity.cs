@@ -20,36 +20,41 @@ public class Activity
         _duration = int.Parse(input);
         Console.WriteLine();
         Console.WriteLine("Get ready...");
-        ShowSpinner(3);
+
         Console.WriteLine();
     }
     public void DisplayEndingMessage()
     {
         Console.WriteLine();
         Console.WriteLine("Well done!!");
-        ShowSpinner(3);
         Console.WriteLine();
         Console.WriteLine($"You have completed {_name} for {_duration} seconds.");
-        ShowSpinner(3);
+        Console.Write("Returning to menu "); ShowSpinner(3);
         Console.WriteLine();
     }
-    public void ShowSpinner(int seconds)
+    public void ShowSpinner(int seconds, DateTime? endTime = null)//null such that it doesnt break if its is not declared
     {
-        for (int i = 0; i < seconds; i++)
+    List<string> animationStrings = new List<string> { "|", "/", "-", "\\" };
+    DateTime spinnerEndTime = DateTime.Now.AddSeconds(seconds);
+
+    int i = 0;
+    while (DateTime.Now < spinnerEndTime)
+    {
+        // Stop immediately if the overall activity time has expired
+        if (endTime.HasValue && DateTime.Now >= endTime.Value)
         {
-            Console.Write("|");
-            Thread.Sleep(200);
-            Console.Write("\b \b");
-            Console.Write("/");
-            Thread.Sleep(200);
-            Console.Write("\b \b");
-            Console.Write("-");
-            Thread.Sleep(200);
-            Console.Write("\b \b");
-            Console.Write("\\");
-            Thread.Sleep(200);
-            Console.Write("\b \b");
+            break;
         }
+        string s = animationStrings[i];
+        Console.Write(s);
+        Thread.Sleep(50); 
+        Console.Write("\b \b");
+        i++;
+        if (i >= animationStrings.Count)
+        {
+            i = 0;
+        }
+    };
     }
     public void ShowCountDown(int seconds)
     {

@@ -40,8 +40,7 @@ public class ReflectionActivity : Activity
         string prompt = _prompts[_random.Next(_prompts.Count)];
         Console.WriteLine($"Question: {prompt}");
         Console.WriteLine();
-        Console.WriteLine("When you have something in mind, press Enter to continue.");
-        Console.ReadLine();
+
         DateTime startTime = DateTime.Now;
         DateTime futureTime = startTime.AddSeconds(GetDuration());
         while (DateTime.Now < futureTime)
@@ -49,7 +48,12 @@ public class ReflectionActivity : Activity
             string question = _questions[_random.Next(_questions.Count)];
             Console.WriteLine();
             Console.WriteLine(question);
-            ShowSpinner(5);
+            DateTime? endTime=futureTime;
+            if (endTime.HasValue && DateTime.Now >= endTime.Value)
+            {
+            break;
+            }
+            Thread.Sleep(5000);
         }
         DisplayEndingMessage();
     }

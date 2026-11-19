@@ -16,8 +16,6 @@ public class BreathingActivity : Activity
             Console.WriteLine();
             Console.WriteLine("Breathe in...");
             ShowCountDown(2);
-            Thread.Sleep(2000);
-
             Console.WriteLine();
             Console.WriteLine("Breathe out...");
             ShowCountDown(2);

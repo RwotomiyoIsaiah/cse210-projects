@@ -5,7 +5,7 @@ public class ListingActivity : Activity
     public ListingActivity()
         : base(
             "Listing Activity",
-            "This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area.")
+            "This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area. GO!!")
     {
         _prompts = new List<string>
         {
@@ -20,14 +20,9 @@ public class ListingActivity : Activity
     public void Run()
     {
         DisplayStartingMessage();
-
         Console.WriteLine();
         Console.WriteLine("Respond to the Following prompts:");
         Console.WriteLine();
-        Console.WriteLine("You may begin in:");
-        ShowCountDown(5);
-        Console.WriteLine();
-
         List<string> items = new List<string>();
 
         DateTime startTime = DateTime.Now;
@@ -37,11 +32,26 @@ public class ListingActivity : Activity
             string prompt = _prompts[_random.Next(_prompts.Count)];
             Console.WriteLine($"Question: {prompt}");
             Console.WriteLine();
-            Console.Write("Answer: ");
-            string item = Console.ReadLine() ?? "";
-            if (!string.IsNullOrWhiteSpace(item))
-            {
-                items.Add(item);
+            string answer ="type";
+            while(answer=="type"){
+                Console.Write("Answer: ");
+                answer = Console.ReadLine() ?? "";
+                if (!string.IsNullOrWhiteSpace(answer))
+                {
+                    items.Add(answer);
+                }
+                DateTime? endTime=futureTime;
+                if (endTime.HasValue && DateTime.Now >= endTime.Value)
+                {
+                    break;
+                }
+                Console.WriteLine("Type 'end' to stop and record your response");
+                answer = Console.ReadLine() ?? "";
+                if (answer.ToLower() == "end")
+                {
+                    break;
+                }
+
             }
         }
         Console.WriteLine();
