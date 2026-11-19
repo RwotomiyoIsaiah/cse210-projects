@@ -7,8 +7,6 @@ public class StationaryBicycle : Activity
     {
         _speed = speed;
     }
-
-
     public override double GetSpeed()
     {
         return _speed;
