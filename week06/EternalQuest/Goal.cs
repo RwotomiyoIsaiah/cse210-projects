@@ -9,23 +9,23 @@ public abstract class Goal
         _description = description;
         _points = points;
     }
+    public int GetPoints()
+    {
+        return _points;
+    }
     public string GetShortName()
     {
         return _shortName;
     }
-    public string GetDescription()
+    public string GetDescription()✅
     {
         return _description;
-    }
-    public int GetPoints()
-    {
-        return _points;
     }
     public abstract int RecordEvent();
     public abstract bool IsComplete();
     public virtual string GetDetailsString()
     {
-        string statusSymbol = IsComplete() ? "[X]" : "[ ]";//USED SIMPLFIED FORM OF IF STATEMENT TO CHECK IF GOAL IS COMPLETE AND ASSIGN APPROPRIATE SYMBOL
+        string statusSymbol = IsComplete() ? "[X]" : "[.]";//USED SIMPLFIED FORM OF IF STATEMENT TO CHECK IF GOAL IS COMPLETE AND ASSIGN APPROPRIATE SYMBOL
         return $"{statusSymbol} {_shortName} ({_description})";
     }
 

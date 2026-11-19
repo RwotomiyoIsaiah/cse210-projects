@@ -66,12 +66,6 @@ public class GoalManager
             }
         }
     }
-    public void DisplayPlayerInfo()
-    {
-        int level = (_score / 1000) + 1;
-        Console.WriteLine($"You have {_score} points. (Level {level} Questing Adventurer)");
-    }
-
     public void ListGoalNames()
     {
         for (int i = 0; i < _goals.Count; i++)
@@ -79,7 +73,6 @@ public class GoalManager
             Console.WriteLine($"{i + 1}. {_goals[i].GetShortName()}");
         }
     }
-
     public void ListGoalDetails()
     {
         Console.WriteLine("The goals are:");
@@ -88,6 +81,11 @@ public class GoalManager
             Console.WriteLine($"{i + 1}. {_goals[i].GetDetailsString()}");
         }
     }
+    public void DisplayPlayerInfo()
+    {
+        int level = (_score / 1000) + 1;
+        Console.WriteLine($"You have {_score} points. (Level {level} Questing Adventurer)");
+    }   
     public void CreateGoal()
     {
         Console.WriteLine("The types of Goals are:");
@@ -120,6 +118,20 @@ public class GoalManager
             _goals.Add(new ChecklistGoal(name, description, points, target, bonus));
         }
     }
+    public void SaveGoals()
+    {
+        Console.Write("What is the filename for the goal file? ");
+        string filename = Console.ReadLine();
+        using (StreamWriter writer = new StreamWriter(filename))
+        {
+            writer.WriteLine(_score);
+            foreach (Goal goal in _goals)
+            {
+                writer.WriteLine(goal.GetStringRepresentation());
+            }
+        }
+        Console.WriteLine("Goals saved successfully.");
+    }
     public void RecordEvent()
     {
         if (_goals.Count == 0)
@@ -144,20 +156,7 @@ public class GoalManager
             Console.WriteLine("Invalid selection.");
         }
     }
-    public void SaveGoals()
-    {
-        Console.Write("What is the filename for the goal file? ");
-        string filename = Console.ReadLine();
-        using (StreamWriter writer = new StreamWriter(filename))
-        {
-            writer.WriteLine(_score);
-            foreach (Goal goal in _goals)
-            {
-                writer.WriteLine(goal.GetStringRepresentation());
-            }
-        }
-        Console.WriteLine("Goals saved successfully.");
-    }
+    
     public void LoadGoals()
     {
         Console.Write("What is the filename for the goal file? ");
