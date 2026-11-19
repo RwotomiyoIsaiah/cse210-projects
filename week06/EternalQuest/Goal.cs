@@ -17,7 +17,7 @@ public abstract class Goal
     {
         return _shortName;
     }
-    public string GetDescription()✅
+    public string GetDescription()
     {
         return _description;
     }
