@@ -32,11 +32,15 @@ public class ListingActivity : Activity
             string prompt = _prompts[_random.Next(_prompts.Count)];
             Console.WriteLine($"Question: {prompt}");
             Console.WriteLine();
-            string answer ="type";
-            while(answer=="type"){
-                Console.Write("Answer: ");
+            
+            while(DateTime.Now < futureTime){
+                string answer;
+                Console.Write("(type 'end' when finished) Answer: ");
                 answer = Console.ReadLine() ?? "";
-                if (!string.IsNullOrWhiteSpace(answer))
+                if (answer == "end")
+                {
+                    break;
+                }else if (!string.IsNullOrWhiteSpace(answer))
                 {
                     items.Add(answer);
                 }
@@ -45,13 +49,6 @@ public class ListingActivity : Activity
                 {
                     break;
                 }
-                Console.WriteLine("Type 'end' to stop and record your response");
-                answer = Console.ReadLine() ?? "";
-                if (answer.ToLower() == "end")
-                {
-                    break;
-                }
-
             }
         }
         Console.WriteLine();
